@@ -53,6 +53,13 @@ const io = new Server(servidor, {
   },
 });
 
+// const io = new Server(servidor, {
+//   pingTimeout: 60000,
+//   cors: {
+//     origin: process.env.FRONTEND_URL,
+//   },
+// });
+
 io.on("connection", (socket) => {
   console.log("Conectado a socket.io");
 
