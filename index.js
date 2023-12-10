@@ -15,8 +15,7 @@ dotenv.config();
 conectarDB();
 
 // Configurar CORS
-const whitelist = [ process.env.FRONTEND_URL ];
-// const whitelist = [process.env.FRONTEND_URL2, process.env.FRONTEND_URL ];
+const whitelist = [process.env.FRONTEND_URL];
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -43,14 +42,13 @@ const servidor = app.listen(PORT, () => {
   console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
 
-//Socket.io
+// Socket.io
 import { Server } from "socket.io";
 
 const io = new Server(servidor, {
   pingTimeout: 60000,
   cors: {
-    // origin: process.env.FRONTEND_URL2
-    origin: process.env.FRONTEND_URL
+    origin: process.env.FRONTEND_URL,
   },
 });
 
