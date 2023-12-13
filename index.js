@@ -29,8 +29,8 @@ const corsOptions = {
   },
 };
 
-// app.use(cors(corsOptions));
-app.use(cors({ origin: '*' }));
+app.use(cors(corsOptions));
+// app.use(cors({ origin: '*' }));
 
 //Routing
 app.use("/api/usuarios", usuarioRoutes);
@@ -46,19 +46,19 @@ const servidor = app.listen(PORT, () => {
 // Socket.io
 import { Server } from "socket.io";
 
-const io = new Server(servidor, {
-  pingTimeout: 60000,
-  cors: {
-    origin: '*',
-  },
-});
-
 // const io = new Server(servidor, {
 //   pingTimeout: 60000,
 //   cors: {
-//     origin: process.env.FRONTEND_URL,
+//     origin: '*',
 //   },
 // });
+
+const io = new Server(servidor, {
+  pingTimeout: 60000,
+  cors: {
+    origin: process.env.FRONTEND_URL,
+  },
+});
 
 io.on("connection", (socket) => {
   console.log("Conectado a socket.io");
